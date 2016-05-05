@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace VP_Project.Properties
+namespace FlappyBird.Properties
 {
 
 
