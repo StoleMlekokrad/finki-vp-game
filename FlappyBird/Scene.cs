@@ -28,17 +28,31 @@ namespace FlappyBird
             this.step = 5;
             this.resetPipes = false;
             this.hitPipe = false;
-            this.highScore = int.Parse(System.IO.File.ReadAllText("HighScores.ini"));
+            try
+            {
+                this.highScore = int.Parse(System.IO.File.ReadAllText("HighScores.ini"));
+            }
+            catch(System.IO.FileNotFoundException)
+            {
+                this.highScore = 0;
+            }
         }
 
         public void showScore()
         {
-            int score = int.Parse(System.IO.File.ReadAllText("HighScores.ini"));
-
-            if(points > highScore)
+            try
             {
-                highScore = points;
-                System.IO.File.WriteAllText("HighScores.ini", points.ToString());
+                int score = int.Parse(System.IO.File.ReadAllText("HighScores.ini"));
+
+                if (points > highScore)
+                {
+                    highScore = points;
+                    System.IO.File.WriteAllText("HighScores.ini", points.ToString());
+                }
+            }
+            catch (System.IO.FileNotFoundException)
+            {
+                highScore = 0;
             }
         }
     }

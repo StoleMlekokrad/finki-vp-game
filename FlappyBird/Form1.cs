@@ -71,7 +71,6 @@ namespace FlappyBird
             scene.isRunning = true;
 
             Focus();
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -143,5 +142,39 @@ namespace FlappyBird
             if (scene.start == true)
                 scene.start = false;
         }
+
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            if (!scene.resetPipes && scene.width.Any() && scene.height.Any())
+            {
+                e.Graphics.FillRectangle(Brushes.DarkGreen, new Rectangle(scene.width[0], 0, pipe.width, scene.height[1]));
+                e.Graphics.FillRectangle(Brushes.DarkGreen, new Rectangle(scene.width[0] - 10, scene.width[3] - pipe.posY, 75, 15));
+
+                e.Graphics.FillRectangle(Brushes.DarkGreen, new Rectangle(scene.width[2], scene.width[3], pipe.width, this.Height - scene.width[3]));
+                e.Graphics.FillRectangle(Brushes.DarkGreen, new Rectangle(scene.width[2] - 10, scene.width[3], 75, 15));
+                
+                e.Graphics.FillRectangle(Brushes.DarkGreen, new Rectangle(scene.width[0], 0, pipe.width, scene.height[1]));
+                e.Graphics.FillRectangle(Brushes.DarkGreen, new Rectangle(scene.width[0] - 10, scene.height[3] - pipe.posY, 75, 15));
+                
+                e.Graphics.FillRectangle(Brushes.DarkGreen, new Rectangle(scene.width[2], scene.height[3], pipe.width, this.Height - scene.height[3]));
+                e.Graphics.FillRectangle(Brushes.DarkGreen, new Rectangle(scene.width[2] - 10, scene.height[3], 75, 15));
+
+            }
+        }
+
+        private void timer3_Tick(object sender, EventArgs e)
+        {
+            pBox.Location = new Point(pBox.Location.X, pBox.Location.Y + scene.step);
+            if (pBox.Location.Y < 0)
+            {
+                pBox.Location = new Point(pBox.Location.X, 0);
+            }
+            if (pBox.Location.Y + pBox.Height > this.ClientSize.Height)
+            {
+                pBox.Location = new Point(pBox.Location.X, this.ClientSize.Height - pBox.Height);
+            }
+
+            lblTextScore.Text = scene.points.ToString();
+    }
     }
 }

@@ -64,6 +64,7 @@
             // timer3
             // 
             this.timer3.Interval = 1;
+            this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
             // 
             // pBox
             // 
@@ -104,6 +105,7 @@
             this.Name = "Form1";
             this.Text = "Flappy Bird";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.pBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
