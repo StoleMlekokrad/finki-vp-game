@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -173,8 +174,78 @@ namespace FlappyBird
             {
                 pBox.Location = new Point(pBox.Location.X, this.ClientSize.Height - pBox.Height);
             }
+            CheckForCollision();
+            if (scene.isRunning)
+            {
+                CheckForPoint();
+            }
 
             lblTextScore.Text = scene.points.ToString();
     }
+        private void CheckForPoint()
+        {
+            Rectangle rec1 = pBox.Bounds;
+            Rectangle rec2 = new Rectangle(scene.width[2] + 20, scene.width[3] - pipe.posY, 15, pipe.posY);
+            Rectangle rec3 = new Rectangle(scene.height[2] + 20, scene.height[3] - pipe.posY, 15, pipe.posY);
+            Rectangle intersect1 = Rectangle.Intersect(rec1, rec2);
+            Rectangle intersect2 = Rectangle.Intersect(rec1, rec3);
+            if(!scene.resetPipes | scene.start)
+            {
+                if(intersect1 != Rectangle.Empty | intersect2 != Rectangle.Empty)
+                {
+                    if (!scene.hitPipe)
+                    {
+                        scene.points++;
+                        scene.hitPipe = true;
+                    }
+                }
+                else
+                {
+                    scene.hitPipe = false;
+                }
+            }
+        }
+        private void CheckForCollision()
+        {
+            Rectangle rec1 = pBox.Bounds;
+            Rectangle rec2 = new Rectangle(scene.width[0], 0, pipe.width, scene.width[1]);
+            Rectangle rec3 = new Rectangle(scene.width[2], scene.width[3], pipe.width, this.Height - scene.width[3]);
+            Rectangle rec4 = new Rectangle(scene.height[0], 0, pipe.width, scene.width[1]);
+            Rectangle rec5 = new Rectangle(scene.width[2], scene.width[3], pipe.width, this.Height - scene.width[3]);
+            Rectangle intersect1 = Rectangle.Intersect(rec1, rec2);
+            Rectangle intersect2 = Rectangle.Intersect(rec1, rec3);
+            Rectangle intersect3 = Rectangle.Intersect(rec1, rec4);
+            Rectangle intersect4 = Rectangle.Intersect(rec1, rec5);
+
+
+            if (!scene.resetPipes | scene.start)
+            {
+                if (intersect1 != Rectangle.Empty | intersect2 != Rectangle.Empty | intersect3 != Rectangle.Empty | intersect4 != Rectangle.Empty)
+                {
+                    Die();
+                }
+            }
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Space:
+                    scene.step = -5;
+                break;
+            }
+        }
+
+        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Space:
+                    scene.step = 5;
+                break;
+            }
+        }
+
     }
 }
