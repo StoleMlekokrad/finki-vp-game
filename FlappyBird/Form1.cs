@@ -232,7 +232,7 @@ namespace FlappyBird
             switch (e.KeyCode)
             {
                 case Keys.Space:
-                    scene.step = -5;
+                    scene.step = -6;
                 break;
             }
         }
@@ -242,7 +242,7 @@ namespace FlappyBird
             switch (e.KeyCode)
             {
                 case Keys.Space:
-                    scene.step = 5;
+                    scene.step = 6;
                 break;
             }
         }
