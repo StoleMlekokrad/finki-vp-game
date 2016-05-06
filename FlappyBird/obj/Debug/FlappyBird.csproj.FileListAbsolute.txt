@@ -7,3 +7,12 @@ C:\Users\kjanko\Desktop\vizuelnoSeminarska\FlappyBird\FlappyBird\obj\Debug\Flapp
 C:\Users\kjanko\Desktop\vizuelnoSeminarska\FlappyBird\FlappyBird\obj\Debug\FlappyBird.csproj.GenerateResource.Cache
 C:\Users\kjanko\Desktop\vizuelnoSeminarska\FlappyBird\FlappyBird\obj\Debug\FlappyBird.exe
 C:\Users\kjanko\Desktop\vizuelnoSeminarska\FlappyBird\FlappyBird\obj\Debug\FlappyBird.pdb
+C:\Users\kjanko\Desktop\vpGit\finki-vp-game-master\FlappyBird\bin\Debug\FlappyBird.exe.config
+C:\Users\kjanko\Desktop\vpGit\finki-vp-game-master\FlappyBird\obj\Debug\FlappyBird.exe
+C:\Users\kjanko\Desktop\vpGit\finki-vp-game-master\FlappyBird\obj\Debug\FlappyBird.pdb
+C:\Users\kjanko\Desktop\vpGit\finki-vp-game-master\FlappyBird\obj\Debug\FlappyBird.csprojResolveAssemblyReference.cache
+C:\Users\kjanko\Desktop\vpGit\finki-vp-game-master\FlappyBird\obj\Debug\FlappyBird.Form1.resources
+C:\Users\kjanko\Desktop\vpGit\finki-vp-game-master\FlappyBird\obj\Debug\FlappyBird.csproj.GenerateResource.Cache
+C:\Users\kjanko\Desktop\vpGit\finki-vp-game-master\FlappyBird\bin\Debug\FlappyBird.exe
+C:\Users\kjanko\Desktop\vpGit\finki-vp-game-master\FlappyBird\bin\Debug\FlappyBird.pdb
+C:\Users\kjanko\Desktop\vpGit\finki-vp-game-master\FlappyBird\obj\Debug\FlappyBird.Properties.Resources.resources

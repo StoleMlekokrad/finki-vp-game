@@ -59,15 +59,5 @@ namespace FlappyBird.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap flappybird_topic {
-            get {
-                object obj = ResourceManager.GetObject("flappybird_topic", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
     }
 }

@@ -9,25 +9,35 @@ namespace FlappyBird
 {
     public class Scene
     {
-        public List<int> width = new List<int>();
-        public List<int> height = new List<int>();
+        public Pipe topPipe;
+        public Pipe bottomPipe;
 
-        public bool start;
+        // dolzina i sirina na cevkite
+        public int pipeWidth = 55;
+        public int pipeHeight = 180;
+
+        // momentalen cekor na kompirot
+        public int currentStep = 0;
+
+        // Dali igrata e aktivna
+        public bool active;
+        // Dali kompirot leta
         public bool isRunning;
+        // Pomestuvanje pri klik
         public int step;
+        // Pozicija na kompirot
         public int m_posX;
         public int m_posY;
-        public bool resetPipes;
+
+        // Momentalni poeni
         public int points;
-        public bool hitPipe;
+        // Najvisok skor
         public int highScore;
 
         public Scene()
         {
-            this.start = true;
-            this.step = 5;
-            this.resetPipes = false;
-            this.hitPipe = false;
+            this.active = true;
+            this.step = 3;
             try
             {
                 this.highScore = int.Parse(System.IO.File.ReadAllText("HighScores.ini"));
