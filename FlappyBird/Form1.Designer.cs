@@ -35,6 +35,8 @@
             this.lblScore = new System.Windows.Forms.Label();
             this.pBox = new System.Windows.Forms.PictureBox();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.lblHighScoreText = new System.Windows.Forms.Label();
+            this.lblHighScore = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -78,23 +80,44 @@
             // pBox
             // 
             this.pBox.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.pBox.Location = new System.Drawing.Point(109, 243);
+            this.pBox.Location = new System.Drawing.Point(109, 244);
             this.pBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pBox.Name = "pBox";
             this.pBox.Size = new System.Drawing.Size(38, 39);
             this.pBox.TabIndex = 1;
             this.pBox.TabStop = false;
+            this.pBox.Click += new System.EventHandler(this.pBox_Click);
             // 
             // timer2
             // 
-            this.timer2.Interval = 4200;
+            this.timer2.Interval = 2200;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
+            // lblHighScoreText
+            // 
+            this.lblHighScoreText.AutoSize = true;
+            this.lblHighScoreText.Location = new System.Drawing.Point(84, 62);
+            this.lblHighScoreText.Name = "lblHighScoreText";
+            this.lblHighScoreText.Size = new System.Drawing.Size(82, 17);
+            this.lblHighScoreText.TabIndex = 4;
+            this.lblHighScoreText.Text = "High Score:";
+            // 
+            // lblHighScore
+            // 
+            this.lblHighScore.AutoSize = true;
+            this.lblHighScore.Location = new System.Drawing.Point(170, 62);
+            this.lblHighScore.Name = "lblHighScore";
+            this.lblHighScore.Size = new System.Drawing.Size(16, 17);
+            this.lblHighScore.TabIndex = 5;
+            this.lblHighScore.Text = "0";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(341, 529);
+            this.Controls.Add(this.lblHighScore);
+            this.Controls.Add(this.lblHighScoreText);
             this.Controls.Add(this.lblScore);
             this.Controls.Add(this.lblTextScore);
             this.Controls.Add(this.pBox);
@@ -120,6 +143,8 @@
         private System.Windows.Forms.Label lblTextScore;
         private System.Windows.Forms.Label lblScore;
         private System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.Label lblHighScoreText;
+        private System.Windows.Forms.Label lblHighScore;
     }
 }
 

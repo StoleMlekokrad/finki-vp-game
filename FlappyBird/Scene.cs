@@ -14,7 +14,7 @@ namespace FlappyBird
 
         // dolzina i sirina na cevkite
         public int pipeWidth = 55;
-        public int pipeHeight = 180;
+        public int pipeHeight = 190;
 
         // momentalen cekor na kompirot
         public int currentStep = 0;

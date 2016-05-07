@@ -38,10 +38,19 @@ namespace FlappyBird
             scene = new Scene();
             scene.m_posX = pBox.Location.X;
             scene.m_posY = pBox.Location.Y;
+            lblHighScore.Text = System.IO.File.ReadAllText("HighScores.ini");
+
         }
 
         private void Die()
         {
+            if(scene.points > scene.highScore)
+            {
+                scene.highScore = scene.points;
+                lblHighScore.Text = scene.points.ToString();
+                System.IO.File.WriteAllText("HighScores.ini", scene.points.ToString());
+
+            }
             timer1.Enabled = false;
             timer2.Enabled = false;
 
@@ -52,6 +61,7 @@ namespace FlappyBird
 
             scene.active = false;
             scene.currentStep = 0;
+            scene.points = 0;
 
             pBox.Location = new Point(scene.m_posX, scene.m_posY);
         }
@@ -62,9 +72,12 @@ namespace FlappyBird
             timer2.Enabled = true;
 
             button1.Visible = false;
-            button1.Enabled = false; 
-            lblScore.Visible = false;
-            lblTextScore.Visible = false;
+            button1.Enabled = false;
+            lblScore.Text = 0 + "";
+            lblHighScore.Text = scene.highScore.ToString();
+            
+            /*lblScore.Visible = false;
+            lblTextScore.Visible = false;*/
 
             Random r = new Random();
             offset = r.Next(-5, 5);
@@ -81,7 +94,7 @@ namespace FlappyBird
         {
             CheckForCollision();
 
-            scene.currentStep += 1;
+            scene.currentStep += 2;
             pBox.Location = new Point(pBox.Location.X, pBox.Location.Y + scene.step);
 
             if(pBox.Location.Y < 0 | this.ClientSize.Height < pBox.Location.Y + pBox.Height)
@@ -93,8 +106,8 @@ namespace FlappyBird
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            scene.topPipe = new Pipe(scene.pipeWidth, scene.pipeHeight, Width - scene.pipeWidth / 2 - scene.currentStep, 0);
-            scene.bottomPipe = new Pipe(scene.pipeWidth, scene.pipeHeight, Width - scene.pipeWidth / 2 - scene.currentStep, Height - scene.pipeHeight);
+            scene.topPipe = new Pipe(scene.pipeWidth, scene.pipeHeight - offset, Width - scene.pipeWidth / 2 - scene.currentStep , 0 );
+            scene.bottomPipe = new Pipe(scene.pipeWidth, scene.pipeHeight + offset, Width - scene.pipeWidth / 2 - scene.currentStep, Height - scene.pipeHeight - offset);
             scene.topPipe.Draw(e.Graphics);
             scene.bottomPipe.Draw(e.Graphics);
         }
@@ -102,11 +115,13 @@ namespace FlappyBird
         private void timer2_Tick(object sender, EventArgs e)
         {
             Random r = new Random();
-            offset = r.Next(-5, 5);
+            offset = r.Next(-10, 10);
             offset *= 10;
             offset += pBox.Height;
 
             scene.currentStep = 0;
+            scene.points++;
+            lblScore.Text = scene.points.ToString();
 
             Invalidate(scene.active);
         }
@@ -118,12 +133,12 @@ namespace FlappyBird
 
         private void CheckForCollision()
         {
-            Rectangle r1 = new Rectangle(pBox.Location.X, pBox.Location.Y, pBox.Width, pBox.Height);
-            Rectangle r2 = new Rectangle(scene.topPipe.posX, scene.topPipe.posY, scene.topPipe.width, scene.topPipe.height);
-            Rectangle r3 = new Rectangle(scene.bottomPipe.posX, scene.bottomPipe.posY, scene.bottomPipe.width, scene.bottomPipe.height);
+            Rectangle r1 = pBox.Bounds;
+            Rectangle r2 = new Rectangle(scene.topPipe.posX - scene.topPipe.width / 2, scene.topPipe.posY - scene.topPipe.width / 2, scene.topPipe.width, scene.topPipe.height);
+            Rectangle r3 = new Rectangle(scene.bottomPipe.posX - scene.bottomPipe.width / 2, scene.bottomPipe.posY - scene.bottomPipe.width / 2, scene.bottomPipe.width, scene.bottomPipe.height);
 
             if (r1.IntersectsWith(r2) | r1.IntersectsWith(r3))
-            { 
+            {
                 Die();
             }
         }
@@ -133,7 +148,7 @@ namespace FlappyBird
             switch (e.KeyCode)
             {
                 case Keys.Space:
-                    scene.step = -3;
+                    scene.step = -4;
                 break;
             }
         }
@@ -143,9 +158,14 @@ namespace FlappyBird
             switch (e.KeyCode)
             {
                 case Keys.Space:
-                    scene.step = 3;
+                    scene.step = 4;
                 break;
             }
+        }
+
+        private void pBox_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
