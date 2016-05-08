@@ -112,8 +112,8 @@ namespace FlappyBird
             int x = (scene.currentStep / 2) % image.Width;
             e.Graphics.DrawImage(image, new Point(-x, 0));
             e.Graphics.DrawImage(image, new Point(-scene.currentStep + image.Width, 0));
-            scene.topPipe = new Pipe(scene.pipeWidth, scene.pipeHeight - offset, Width - scene.pipeWidth / 2 - scene.currentStep , 0 );
-            scene.bottomPipe = new Pipe(scene.pipeWidth, scene.pipeHeight + offset, Width - scene.pipeWidth / 2 - scene.currentStep, Height - scene.pipeHeight - offset);
+            scene.topPipe = new Pipe(scene.pipeWidth, scene.pipeHeight - offset, Width - scene.pipeWidth / 2 - scene.currentStep , 0 , false);
+            scene.bottomPipe = new Pipe(scene.pipeWidth, scene.pipeHeight + offset, Width - scene.pipeWidth / 2 - scene.currentStep, Height - scene.pipeHeight - offset, true);
             scene.topPipe.Draw(e.Graphics);
             scene.bottomPipe.Draw(e.Graphics);
             if (scene.step < 4 && scene.step > -4)

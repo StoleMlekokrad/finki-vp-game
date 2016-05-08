@@ -33,19 +33,19 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblTextScore = new System.Windows.Forms.Label();
             this.lblScore = new System.Windows.Forms.Label();
-            this.pBox = new System.Windows.Forms.PictureBox();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.lblHighScoreText = new System.Windows.Forms.Label();
             this.lblHighScore = new System.Windows.Forms.Label();
+            this.pBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pBox)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
             // 
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Comic Sans MS", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Font = new System.Drawing.Font("Lucida Console", 8.25F);
             this.button1.Location = new System.Drawing.Point(82, 350);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(90, 56);
             this.button1.TabIndex = 0;
@@ -61,10 +61,12 @@
             // lblTextScore
             // 
             this.lblTextScore.AutoSize = true;
+            this.lblTextScore.BackColor = System.Drawing.Color.Transparent;
+            this.lblTextScore.Font = new System.Drawing.Font("Lucida Console", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lblTextScore.Location = new System.Drawing.Point(88, 29);
             this.lblTextScore.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTextScore.Name = "lblTextScore";
-            this.lblTextScore.Size = new System.Drawing.Size(38, 13);
+            this.lblTextScore.Size = new System.Drawing.Size(47, 11);
             this.lblTextScore.TabIndex = 2;
             this.lblTextScore.Text = "Score:";
             this.lblTextScore.Click += new System.EventHandler(this.lblTextScore_Click);
@@ -72,28 +74,14 @@
             // lblScore
             // 
             this.lblScore.AutoSize = true;
-            this.lblScore.Location = new System.Drawing.Point(130, 29);
+            this.lblScore.BackColor = System.Drawing.Color.Transparent;
+            this.lblScore.Font = new System.Drawing.Font("Lucida Console", 8.25F);
+            this.lblScore.Location = new System.Drawing.Point(140, 29);
             this.lblScore.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblScore.Name = "lblScore";
-            this.lblScore.Size = new System.Drawing.Size(13, 13);
+            this.lblScore.Size = new System.Drawing.Size(12, 11);
             this.lblScore.TabIndex = 3;
             this.lblScore.Text = "0";
-            // 
-            // pBox
-            // 
-            this.pBox.BackColor = System.Drawing.Color.Transparent;
-            this.pBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pBox.ErrorImage = null;
-            this.pBox.Image = global::FlappyBird.Properties.Resources.flappy;
-            this.pBox.InitialImage = null;
-            this.pBox.Location = new System.Drawing.Point(11, 190);
-            this.pBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.pBox.Name = "pBox";
-            this.pBox.Size = new System.Drawing.Size(28, 32);
-            this.pBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pBox.TabIndex = 1;
-            this.pBox.TabStop = false;
-            this.pBox.Click += new System.EventHandler(this.pBox_Click);
             // 
             // timer2
             // 
@@ -103,22 +91,42 @@
             // lblHighScoreText
             // 
             this.lblHighScoreText.AutoSize = true;
-            this.lblHighScoreText.Location = new System.Drawing.Point(63, 50);
+            this.lblHighScoreText.BackColor = System.Drawing.Color.Transparent;
+            this.lblHighScoreText.Font = new System.Drawing.Font("Lucida Console", 8.25F);
+            this.lblHighScoreText.Location = new System.Drawing.Point(53, 50);
             this.lblHighScoreText.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblHighScoreText.Name = "lblHighScoreText";
-            this.lblHighScoreText.Size = new System.Drawing.Size(63, 13);
+            this.lblHighScoreText.Size = new System.Drawing.Size(82, 11);
             this.lblHighScoreText.TabIndex = 4;
             this.lblHighScoreText.Text = "High Score:";
             // 
             // lblHighScore
             // 
             this.lblHighScore.AutoSize = true;
-            this.lblHighScore.Location = new System.Drawing.Point(128, 50);
+            this.lblHighScore.BackColor = System.Drawing.Color.Transparent;
+            this.lblHighScore.Font = new System.Drawing.Font("Lucida Console", 8.25F);
+            this.lblHighScore.Location = new System.Drawing.Point(140, 50);
             this.lblHighScore.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblHighScore.Name = "lblHighScore";
-            this.lblHighScore.Size = new System.Drawing.Size(13, 13);
+            this.lblHighScore.Size = new System.Drawing.Size(12, 11);
             this.lblHighScore.TabIndex = 5;
             this.lblHighScore.Text = "0";
+            // 
+            // pBox
+            // 
+            this.pBox.BackColor = System.Drawing.Color.Transparent;
+            this.pBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pBox.ErrorImage = null;
+            this.pBox.Image = global::FlappyBird.Properties.Resources.flappy;
+            this.pBox.InitialImage = null;
+            this.pBox.Location = new System.Drawing.Point(11, 190);
+            this.pBox.Margin = new System.Windows.Forms.Padding(2);
+            this.pBox.Name = "pBox";
+            this.pBox.Size = new System.Drawing.Size(28, 32);
+            this.pBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pBox.TabIndex = 1;
+            this.pBox.TabStop = false;
+            this.pBox.Click += new System.EventHandler(this.pBox_Click);
             // 
             // Form1
             // 
@@ -131,7 +139,7 @@
             this.Controls.Add(this.lblTextScore);
             this.Controls.Add(this.pBox);
             this.Controls.Add(this.button1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Flappy Bird";
             this.Load += new System.EventHandler(this.Form1_Load);
