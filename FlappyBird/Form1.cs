@@ -15,6 +15,7 @@ namespace FlappyBird
     public partial class Form1 : Form
     {
         Scene scene;
+        Image image;
 
         // Broj za kolku ja kratime cevkata
         private int offset;
@@ -39,6 +40,8 @@ namespace FlappyBird
             scene.m_posX = pBox.Location.X;
             scene.m_posY = pBox.Location.Y;
             lblHighScore.Text = System.IO.File.ReadAllText("HighScores.ini");
+            Stream stream = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("FlappyBird.bg.png");
+            image = Image.FromStream(stream);
 
         }
 
@@ -106,6 +109,9 @@ namespace FlappyBird
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
+            int x = (scene.currentStep / 2) % image.Width;
+            e.Graphics.DrawImage(image, new Point(-x, 0));
+            e.Graphics.DrawImage(image, new Point(-scene.currentStep + image.Width, 0));
             scene.topPipe = new Pipe(scene.pipeWidth, scene.pipeHeight - offset, Width - scene.pipeWidth / 2 - scene.currentStep , 0 );
             scene.bottomPipe = new Pipe(scene.pipeWidth, scene.pipeHeight + offset, Width - scene.pipeWidth / 2 - scene.currentStep, Height - scene.pipeHeight - offset);
             scene.topPipe.Draw(e.Graphics);
