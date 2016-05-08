@@ -116,6 +116,10 @@ namespace FlappyBird
             scene.bottomPipe = new Pipe(scene.pipeWidth, scene.pipeHeight + offset, Width - scene.pipeWidth / 2 - scene.currentStep, Height - scene.pipeHeight - offset);
             scene.topPipe.Draw(e.Graphics);
             scene.bottomPipe.Draw(e.Graphics);
+            if (scene.step < 4 && scene.step > -4)
+            {
+                scene.step++;
+            }
         }
 
         private void timer2_Tick(object sender, EventArgs e)
@@ -164,7 +168,7 @@ namespace FlappyBird
             switch (e.KeyCode)
             {
                 case Keys.Space:
-                    scene.step = 4;
+                    scene.step = -3;
                 break;
             }
         }
