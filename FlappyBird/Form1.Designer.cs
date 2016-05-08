@@ -81,11 +81,16 @@
             // 
             // pBox
             // 
-            this.pBox.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.pBox.BackColor = System.Drawing.Color.Transparent;
+            this.pBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pBox.ErrorImage = null;
+            this.pBox.Image = global::FlappyBird.Properties.Resources.flappy;
+            this.pBox.InitialImage = null;
             this.pBox.Location = new System.Drawing.Point(11, 190);
             this.pBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pBox.Name = "pBox";
             this.pBox.Size = new System.Drawing.Size(28, 32);
+            this.pBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pBox.TabIndex = 1;
             this.pBox.TabStop = false;
             this.pBox.Click += new System.EventHandler(this.pBox_Click);
