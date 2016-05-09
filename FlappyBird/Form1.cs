@@ -208,6 +208,7 @@ namespace FlappyBird
             switch (e.KeyCode)
             {
                 case Keys.Space:
+                    e.Handled = e.SuppressKeyPress = true;
                     scene.step = -4;
                     pBox.Image = Resources.flappy;
                     if (!scene.active)
@@ -221,6 +222,7 @@ namespace FlappyBird
             switch (e.KeyCode)
             {
                 case Keys.Space:
+                    e.Handled = e.SuppressKeyPress = true;
                     scene.step = -3;
                     pBox.Image = Resources.flappyDown;            
                 break;
