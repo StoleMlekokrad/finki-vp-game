@@ -32,13 +32,16 @@ namespace FlappyBird
         {
             SolidBrush brush = new SolidBrush(Color.DarkGreen);
             g.FillRectangle(brush, posX - width / 2, posY - width / 2, width, height);
+
             if (bottom)
             {
                 g.FillRectangle(brush, posX - width / 2 - width / 4, posY - width / 2, width + width / 2, width / 4);
-            } else
+            }
+            else
             {
                 g.FillRectangle(brush, posX - width / 2 - width / 4, posY - width / 2 + height, width + width / 2, width / 4);
             }
+
             brush.Dispose();
         }
     }

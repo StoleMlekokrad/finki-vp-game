@@ -20,6 +20,10 @@ namespace FlappyBird
 
         // Broj za kolku ja kratime cevkata
         private int offset;
+        // Broj za kolku se pomestuvaat cevkite
+        private int moveOffset;
+        // Dali cevkite se dvizat 
+        private int moveTurn;
 
         public Form1()
         {
@@ -27,11 +31,13 @@ namespace FlappyBird
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            this.moveOffset = 0;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             DoubleBuffered = true;
+
             if (!File.Exists("HighScores.ini"))
             {
                 File.Create("HighScores.ini").Dispose();
@@ -58,6 +64,9 @@ namespace FlappyBird
             }
             timer1.Enabled = false;
             timer2.Enabled = false;
+            timer3.Enabled = false;
+
+            moveOffset = 0;
 
             button1.Visible = true;
             button1.Enabled = true;
@@ -75,6 +84,7 @@ namespace FlappyBird
         {
             timer1.Enabled = true;
             timer2.Enabled = true;
+            timer3.Enabled = true;
 
             button1.Visible = false;
             button1.Enabled = false;
@@ -84,9 +94,11 @@ namespace FlappyBird
             scene.active = true;
 
             Random r = new Random();
-            offset = r.Next(-5, 5);
+            offset = r.Next(-10, 10);
             offset *= 10;
             offset += pBox.Height;
+
+            moveTurn = r.Next(0, 2);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -98,6 +110,12 @@ namespace FlappyBird
         {
             CheckForCollision();
 
+            Rectangle r2 = new Rectangle(scene.topPipe.posX - scene.topPipe.width / 2, scene.topPipe.posY - scene.topPipe.width / 2, scene.topPipe.width, scene.topPipe.height);
+            Rectangle r3 = new Rectangle(scene.bottomPipe.posX - scene.bottomPipe.width / 2, scene.bottomPipe.posY - scene.bottomPipe.width / 2, scene.bottomPipe.width, scene.bottomPipe.height);
+
+            if (!Screen.AllScreens.Any(s => s.WorkingArea.IntersectsWith(r2)) || !Screen.AllScreens.Any(s => s.WorkingArea.IntersectsWith(r3)))
+                timer3.Enabled = false;
+
             scene.currentStep += 2;
             pBox.Location = new Point(pBox.Location.X, pBox.Location.Y + scene.step);
 
@@ -105,6 +123,7 @@ namespace FlappyBird
             {
                 Die();
             }
+
             Invalidate(scene.active);
         }
 
@@ -113,10 +132,29 @@ namespace FlappyBird
             int x = (scene.currentStep / 2) % image.Width;
             e.Graphics.DrawImage(image, new Point(-x, 0));
             e.Graphics.DrawImage(image, new Point(-scene.currentStep + image.Width, 0));
-            scene.topPipe = new Pipe(scene.pipeWidth, scene.pipeHeight - offset, Width - scene.pipeWidth / 2 - scene.currentStep , 0 , false);
-            scene.bottomPipe = new Pipe(scene.pipeWidth, scene.pipeHeight + offset, Width - scene.pipeWidth / 2 - scene.currentStep, Height - scene.pipeHeight - offset, true);
+
+            if (scene.points >= scene.SCORE_MOVING_PIPES)
+            {
+                if (moveTurn == 0)
+                {
+                    scene.topPipe = new Pipe(scene.pipeWidth, scene.pipeHeight - offset + moveOffset, Width - scene.pipeWidth / 2 - scene.currentStep, 0, false);
+                    scene.bottomPipe = new Pipe(scene.pipeWidth, scene.pipeHeight + offset - moveOffset, Width - scene.pipeWidth / 2 - scene.currentStep, Height - scene.pipeHeight - offset + moveOffset, true);
+                }
+                else
+                {
+                    scene.topPipe = new Pipe(scene.pipeWidth, scene.pipeHeight - offset - moveOffset, Width - scene.pipeWidth / 2 - scene.currentStep, 0, false);
+                    scene.bottomPipe = new Pipe(scene.pipeWidth, scene.pipeHeight + offset + moveOffset, Width - scene.pipeWidth / 2 - scene.currentStep, Height - scene.pipeHeight - offset - moveOffset, true);
+                }
+            }
+            else
+            {
+                scene.topPipe = new Pipe(scene.pipeWidth, scene.pipeHeight - offset, Width - scene.pipeWidth / 2 - scene.currentStep, 0, false);
+                scene.bottomPipe = new Pipe(scene.pipeWidth, scene.pipeHeight + offset, Width - scene.pipeWidth / 2 - scene.currentStep, Height - scene.pipeHeight - offset, true);
+            }
+
             scene.topPipe.Draw(e.Graphics);
             scene.bottomPipe.Draw(e.Graphics);
+
             if (scene.step < 4 && scene.step > -4)
             {
                 scene.step++;
@@ -130,10 +168,21 @@ namespace FlappyBird
             offset *= 10;
             offset += pBox.Height;
 
+            timer3.Enabled = true;
+
+            moveOffset = 0;
+            moveTurn = r.Next(0, 2);
+
             scene.currentStep = 0;
             scene.points++;
             lblScore.Text = scene.points.ToString();
 
+            Invalidate(scene.active);
+        }
+
+        private void timer3_Tick(object sender, EventArgs e)
+        {
+            moveOffset += 1;
             Invalidate(scene.active);
         }
 
@@ -173,14 +222,9 @@ namespace FlappyBird
             {
                 case Keys.Space:
                     scene.step = -3;
-                    pBox.Image = Resources.flappyDown;
+                    pBox.Image = Resources.flappyDown;            
                 break;
             }
-        }
-
-        private void pBox_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

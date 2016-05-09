@@ -12,9 +12,12 @@ namespace FlappyBird
         public Pipe topPipe;
         public Pipe bottomPipe;
 
+        // posle koj skor pocnuvaat da se dvizat cevkite
+        public int SCORE_MOVING_PIPES = 0;
+
         // dolzina i sirina na cevkite
         public int pipeWidth = 55;
-        public int pipeHeight = 185;
+        public int pipeHeight = 180;
 
         // momentalen cekor na kompirot
         public int currentStep = 0;
