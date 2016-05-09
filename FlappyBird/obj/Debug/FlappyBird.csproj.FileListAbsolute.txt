@@ -16,3 +16,6 @@ C:\Users\kjanko\Desktop\vpGit\finki-vp-game-master\FlappyBird\obj\Debug\FlappyBi
 C:\Users\kjanko\Desktop\vpGit\finki-vp-game-master\FlappyBird\bin\Debug\FlappyBird.exe
 C:\Users\kjanko\Desktop\vpGit\finki-vp-game-master\FlappyBird\bin\Debug\FlappyBird.pdb
 C:\Users\kjanko\Desktop\vpGit\finki-vp-game-master\FlappyBird\obj\Debug\FlappyBird.Properties.Resources.resources
+C:\Users\kjanko\Desktop\VP_Anich_V2\finki-vp-game-master\FlappyBird\bin\Debug\FlappyBird.exe.config
+C:\Users\kjanko\Desktop\VP_Anich_V2\finki-vp-game-master\FlappyBird\obj\Debug\FlappyBird.exe
+C:\Users\kjanko\Desktop\VP_Anich_V2\finki-vp-game-master\FlappyBird\obj\Debug\FlappyBird.pdb

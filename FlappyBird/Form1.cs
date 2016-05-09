@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FlappyBird.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -34,6 +35,7 @@ namespace FlappyBird
             if (!File.Exists("HighScores.ini"))
             {
                 File.Create("HighScores.ini").Dispose();
+                System.IO.File.WriteAllText("HighScores.ini", "0");
             }
 
             scene = new Scene();
@@ -78,9 +80,8 @@ namespace FlappyBird
             button1.Enabled = false;
             lblScore.Text = 0 + "";
             lblHighScore.Text = scene.highScore.ToString();
-            
-            /*lblScore.Visible = false;
-            lblTextScore.Visible = false;*/
+
+            scene.active = true;
 
             Random r = new Random();
             offset = r.Next(-5, 5);
@@ -159,7 +160,10 @@ namespace FlappyBird
             {
                 case Keys.Space:
                     scene.step = -4;
-                break;
+                    pBox.Image = Resources.flappy;
+                    if (!scene.active)
+                        Start();
+                    break;
             }
         }
 
@@ -169,6 +173,7 @@ namespace FlappyBird
             {
                 case Keys.Space:
                     scene.step = -3;
+                    pBox.Image = Resources.flappyDown;
                 break;
             }
         }

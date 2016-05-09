@@ -14,7 +14,7 @@ namespace FlappyBird
 
         // dolzina i sirina na cevkite
         public int pipeWidth = 55;
-        public int pipeHeight = 190;
+        public int pipeHeight = 185;
 
         // momentalen cekor na kompirot
         public int currentStep = 0;
@@ -41,6 +41,7 @@ namespace FlappyBird
             try
             {
                 this.highScore = int.Parse(System.IO.File.ReadAllText("HighScores.ini"));
+
             }
             catch(System.IO.FileNotFoundException)
             {
