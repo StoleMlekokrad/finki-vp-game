@@ -87,6 +87,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="flappy.png" />
+    <None Include="Resources\panel.png" />
+    <None Include="Resources\GameOver.png" />
+    <None Include="Resources\flappyButton.jpg" />
+    <None Include="Resources\flappyUp.png" />
+    <None Include="Resources\flappyUp.bmp" />
     <None Include="flappyDown.png" />
     <None Include="Resources\flappyDown.png" />
     <None Include="Resources\flappyDown.bmp" />

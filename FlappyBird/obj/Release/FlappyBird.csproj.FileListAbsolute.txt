@@ -16,3 +16,12 @@ C:\Users\kjanko\Desktop\finki-vp-game\FlappyBird\obj\Release\FlappyBird.csprojRe
 C:\Users\kjanko\Desktop\finki-vp-game\FlappyBird\obj\Release\FlappyBird.Form1.resources
 C:\Users\kjanko\Desktop\finki-vp-game\FlappyBird\obj\Release\FlappyBird.Properties.Resources.resources
 C:\Users\kjanko\Desktop\finki-vp-game\FlappyBird\obj\Release\FlappyBird.csproj.GenerateResource.Cache
+C:\Users\Ani\Source\Repos\finki-vp-game22\FlappyBird\bin\Release\FlappyBird.exe.config
+C:\Users\Ani\Source\Repos\finki-vp-game22\FlappyBird\obj\Release\FlappyBird.exe
+C:\Users\Ani\Source\Repos\finki-vp-game22\FlappyBird\obj\Release\FlappyBird.pdb
+C:\Users\Ani\Source\Repos\finki-vp-game22\FlappyBird\bin\Release\FlappyBird.exe
+C:\Users\Ani\Source\Repos\finki-vp-game22\FlappyBird\bin\Release\FlappyBird.pdb
+C:\Users\Ani\Source\Repos\finki-vp-game22\FlappyBird\obj\Release\FlappyBird.csprojResolveAssemblyReference.cache
+C:\Users\Ani\Source\Repos\finki-vp-game22\FlappyBird\obj\Release\FlappyBird.Form1.resources
+C:\Users\Ani\Source\Repos\finki-vp-game22\FlappyBird\obj\Release\FlappyBird.Properties.Resources.resources
+C:\Users\Ani\Source\Repos\finki-vp-game22\FlappyBird\obj\Release\FlappyBird.csproj.GenerateResource.Cache

@@ -37,7 +37,7 @@ namespace FlappyBird
         private void Form1_Load(object sender, EventArgs e)
         {
             DoubleBuffered = true;
-
+            panel1.Visible = false;
             if (!File.Exists("HighScores.ini"))
             {
                 File.Create("HighScores.ini").Dispose();
@@ -78,10 +78,25 @@ namespace FlappyBird
             scene.points = 0;
 
             pBox.Location = new Point(scene.m_posX, scene.m_posY);
+            pBox.Visible = false;
+            pBox.Image = Resources.flappy;
+            labelScore.Text = scene.points.ToString();
+            labelBest.Text = scene.highScore.ToString();
+            panel1.Visible = true;
+            lblHighScore.Visible = false;
+            lblHighScoreText.Visible = false;
+            lblScore.Visible = false;
+            lblTextScore.Visible = false;
         }
 
         private void Start()
         {
+            lblHighScore.Visible = true;
+            lblHighScoreText.Visible = true;
+            lblScore.Visible = true;
+            lblTextScore.Visible = true;
+            pBox.Visible = true;
+            panel1.Visible = false;
             timer1.Enabled = true;
             timer2.Enabled = true;
             timer3.Enabled = true;
@@ -210,7 +225,8 @@ namespace FlappyBird
                 case Keys.Space:
                     e.Handled = e.SuppressKeyPress = true;
                     scene.step = -4;
-                    pBox.Image = Resources.flappy;
+
+                    pBox.Image = Resources.flappyUp ;
                     if (!scene.active)
                         Start();
                     break;
@@ -227,6 +243,11 @@ namespace FlappyBird
                     pBox.Image = Resources.flappyDown;            
                 break;
             }
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
