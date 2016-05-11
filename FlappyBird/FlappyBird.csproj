@@ -56,6 +56,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scene.cs" />
+    <Compile Include="WMPLib\WindowsMediaPlayer.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -87,6 +88,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="flappy.png" />
+    <None Include="Resources\medalBackground.png" />
+    <None Include="Resources\medal2.png" />
+    <None Include="Resources\medal1.png" />
+    <None Include="Resources\point.mp3" />
     <None Include="Resources\panel.png" />
     <None Include="Resources\GameOver.png" />
     <None Include="Resources\flappyButton.jpg" />

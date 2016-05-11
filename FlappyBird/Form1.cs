@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WMPLib;
 
 namespace FlappyBird
 {
@@ -17,6 +19,7 @@ namespace FlappyBird
     {
         Scene scene;
         Image image;
+        WindowsMediaPlayer wplayer;
 
         // Broj za kolku ja kratime cevkata
         private int offset;
@@ -31,11 +34,18 @@ namespace FlappyBird
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.moveOffset = 0;
+            this.moveOffset = 0;              
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            lblHighScore.Visible = false;
+            lblHighScoreText.Visible = false;
+            lblScore.Visible = false;
+            lblTextScore.Visible = false;
+            label1.Visible = false;
+            labelBest.Visible = false;
+            labelScore.Visible = false;
             DoubleBuffered = true;
             panel1.Visible = false;
             if (!File.Exists("HighScores.ini"))
@@ -62,6 +72,7 @@ namespace FlappyBird
                 System.IO.File.WriteAllText("HighScores.ini", scene.points.ToString());
 
             }
+
             timer1.Enabled = false;
             timer2.Enabled = false;
             timer3.Enabled = false;
@@ -70,8 +81,7 @@ namespace FlappyBird
 
             button1.Visible = true;
             button1.Enabled = true;
-            lblScore.Visible = true;
-            lblTextScore.Visible = true;
+
 
             scene.active = false;
             scene.currentStep = 0;
@@ -80,22 +90,27 @@ namespace FlappyBird
             pBox.Location = new Point(scene.m_posX, scene.m_posY);
             pBox.Visible = false;
             pBox.Image = Resources.flappy;
-            labelScore.Text = scene.points.ToString();
-            labelBest.Text = scene.highScore.ToString();
+
+            labelScore.Text = lblScore.Text;
+            labelBest.Text = lblHighScore.Text;
             panel1.Visible = true;
-            lblHighScore.Visible = false;
-            lblHighScoreText.Visible = false;
-            lblScore.Visible = false;
-            lblTextScore.Visible = false;
+            labelBest.Visible = true;
+            labelScore.Visible = true;
+
+            int points = Convert.ToInt16(lblScore.Text);
+            if (points >= 5)
+            {
+                medalPhoto.Image = Resources.medal2;
+            }
+           
         }
 
         private void Start()
         {
-            lblHighScore.Visible = true;
-            lblHighScoreText.Visible = true;
-            lblScore.Visible = true;
-            lblTextScore.Visible = true;
+           
+            medalPhoto.Image = Resources.medal1;
             pBox.Visible = true;
+
             panel1.Visible = false;
             timer1.Enabled = true;
             timer2.Enabled = true;
@@ -103,6 +118,7 @@ namespace FlappyBird
 
             button1.Visible = false;
             button1.Enabled = false;
+
             lblScore.Text = 0 + "";
             lblHighScore.Text = scene.highScore.ToString();
 
@@ -114,6 +130,8 @@ namespace FlappyBird
             offset += pBox.Height;
 
             moveTurn = r.Next(0, 2);
+        
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -123,7 +141,7 @@ namespace FlappyBird
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            CheckForCollision();
+          CheckForCollision();
 
             Rectangle r2 = new Rectangle(scene.topPipe.posX - scene.topPipe.width / 2, scene.topPipe.posY - scene.topPipe.width / 2, scene.topPipe.width, scene.topPipe.height);
             Rectangle r3 = new Rectangle(scene.bottomPipe.posX - scene.bottomPipe.width / 2, scene.bottomPipe.posY - scene.bottomPipe.width / 2, scene.bottomPipe.width, scene.bottomPipe.height);
@@ -141,9 +159,30 @@ namespace FlappyBird
 
             Invalidate(scene.active);
         }
-
+        public void paintScore(PaintEventArgs e)
+        {
+            GraphicsPath r = new GraphicsPath();
+            Matrix translateMatrix = new Matrix();
+            string add = "      Score: " + lblScore.Text + "\n High Score: " + lblHighScore.Text;
+            translateMatrix.Translate(30, 0);
+            r.AddString(
+                add,
+            
+                FontFamily.GenericMonospace, 
+                (int)FontStyle.Bold,   
+                e.Graphics.DpiY * 15 / 72,       
+                new Point(0, 0),              
+                new StringFormat());          
+            r.Transform(translateMatrix);
+            Pen p = new Pen(Color.Red, 5);
+            e.Graphics.DrawPath(p, r);
+            e.Graphics.FillPath(Brushes.White, r);
+        
+        }
+       
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
+            
             int x = (scene.currentStep / 2) % image.Width;
             e.Graphics.DrawImage(image, new Point(-x, 0));
             e.Graphics.DrawImage(image, new Point(-scene.currentStep + image.Width, 0));
@@ -174,6 +213,10 @@ namespace FlappyBird
             {
                 scene.step++;
             }
+            if (scene.active)
+                paintScore(e);
+           
+
         }
 
         private void timer2_Tick(object sender, EventArgs e)
