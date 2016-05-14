@@ -88,6 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="flappy.png" />
+    <None Include="Resources\point.wav" />
     <None Include="Resources\medalBackground.png" />
     <None Include="Resources\medal2.png" />
     <None Include="Resources\medal1.png" />

@@ -19,7 +19,8 @@ namespace FlappyBird
     {
         Scene scene;
         Image image;
-        WindowsMediaPlayer wplayer;
+        System.Media.SoundPlayer player = new System.Media.SoundPlayer();
+        
 
         // Broj za kolku ja kratime cevkata
         private int offset;
@@ -34,7 +35,8 @@ namespace FlappyBird
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.moveOffset = 0;              
+            this.moveOffset = 0;
+            player.Stream = Properties.Resources.point;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -107,7 +109,6 @@ namespace FlappyBird
 
         private void Start()
         {
-           
             medalPhoto.Image = Resources.medal1;
             pBox.Visible = true;
 
@@ -141,7 +142,7 @@ namespace FlappyBird
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-          CheckForCollision();
+            CheckForCollision();
 
             Rectangle r2 = new Rectangle(scene.topPipe.posX - scene.topPipe.width / 2, scene.topPipe.posY - scene.topPipe.width / 2, scene.topPipe.width, scene.topPipe.height);
             Rectangle r3 = new Rectangle(scene.bottomPipe.posX - scene.bottomPipe.width / 2, scene.bottomPipe.posY - scene.bottomPipe.width / 2, scene.bottomPipe.width, scene.bottomPipe.height);
@@ -163,7 +164,7 @@ namespace FlappyBird
         {
             GraphicsPath r = new GraphicsPath();
             Matrix translateMatrix = new Matrix();
-            string add = "      Score: " + lblScore.Text + "\n High Score: " + lblHighScore.Text;
+            string add = "    Score: " + lblScore.Text + "\n High Score: " + lblHighScore.Text;
             translateMatrix.Translate(30, 0);
             r.AddString(
                 add,
@@ -174,9 +175,9 @@ namespace FlappyBird
                 new Point(0, 0),              
                 new StringFormat());          
             r.Transform(translateMatrix);
-            Pen p = new Pen(Color.Red, 5);
+            Pen p = new Pen(Color.Black, 5);
             e.Graphics.DrawPath(p, r);
-            e.Graphics.FillPath(Brushes.White, r);
+            e.Graphics.FillPath(Brushes.Gray, r);
         
         }
        
@@ -233,6 +234,7 @@ namespace FlappyBird
 
             scene.currentStep = 0;
             scene.points++;
+            player.Play();
             lblScore.Text = scene.points.ToString();
 
             Invalidate(scene.active);
